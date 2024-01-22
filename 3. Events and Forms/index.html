@@ -29,7 +29,9 @@
 
 <!-- Todo 3.2a Create a button with the text "Call inline event handler". Add an inline event handler that logs "From inline event hanlder" when the button is clicked -->
 <!-- Relevant Link: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these See other event listener mechanisms section -->
-<button>Call inline event handler</button>
+<button onclick="console.log('From inline event handler')">Call inline event handler</button>
+
+
 
 <!-- Todo 3.3a Create a button with the text "Call addEventListener" -->
 <button>Call addEventListener</button>
@@ -41,7 +43,12 @@
     <div class="grandparent">
         <div class="parent">
             <div class="child">
-    
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName"><br><br>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName"><br><br>
+                    <input type="submit" value="Submit">
+                </form>
             </div>
         </div>
     </div>
@@ -52,9 +59,15 @@
     <script>
         // Todo 3.1 When the page has loaded, log "The page has loaded"
         // Relevant Link: https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
-
+        window.onload = function(){
+            console.log("The page has loaded");
+        }
         // Todo 3.3b Add an event handler for the button created in 2.3a. The event handler should log "From addEventListener" when the button is clicked
         // Relevant Link: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#using_addeventlistener see Using addEventListener() section
+        const button = document.querySelector("button")
+        button.addEventListener("click", function(){
+            console.log("From addEventListener");
+        })
 
         // Checkpoint 3.1 What is the difference between inline event handlers and addEventListener? When should you use one over the other?
         // Answer: 
@@ -62,7 +75,15 @@
         const results = []
         // Todo 3.3b When the user presses the submit form button, append the contents of the form to results. Then, display the content of results
         // Relevant Link: https://stackoverflow.com/questions/11563638/how-do-i-get-the-value-of-text-input-field-using-javascript
-        
+        const form = document.querySelector("form"); // Add this line to select the form element
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            results.push(firstName, lastName);
+            console.log(results);
+        })
+
         // Todo 3.5 add event listenders for the grandparent, parent, and child divs. When clicked, the grandparent, parent, and child should log "Grandparent", "Parent", and "Child" respectively
         // Relevant Link: https://youtu.be/XF1_MlZ5l6M?si=QrNjKXg-xXV6yghW @ 4:00 of the video
         const grandparent = document.querySelector(".grandparent")
