@@ -52,12 +52,14 @@
             console.log(data4);
 
             // Todo 4.5 Delete the user that you have created
-            const response5 = await fetch('https://reqres.in/api/users/2', {
-                method: 'DELETE'
-            });
-            const data5 = await response5.json();
-            console.log(data5);
-            
+            async function deleteRequest() {
+                const response5 = await fetch('https://reqres.in/api/users/2', {
+                    method: 'DELETE'
+                });
+                const data5 = await response5.json();
+                console.log(data5);
+            }
+            deleteRequest();
         }
         start()
 
