@@ -34,7 +34,7 @@
 
 
 <!-- Todo 3.3a Create a button with the text "Call addEventListener" -->
-<button>Call addEventListener</button>
+<button type="button">Call addEventListener</button>
 
 <!-- Todo 3.4a Create a form that accepts the first name and last name of the user -->
 
@@ -43,11 +43,12 @@
     <div class="grandparent">
         <div class="parent">
             <div class="child">
+                <form>
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" name="firstName"><br><br>
                     <label for="lastName">Last Name:</label>
                     <input type="text" id="lastName" name="lastName"><br><br>
-                    <input type="submit" value="Submit">
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
@@ -64,18 +65,17 @@
         }
         // Todo 3.3b Add an event handler for the button created in 2.3a. The event handler should log "From addEventListener" when the button is clicked
         // Relevant Link: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#using_addeventlistener see Using addEventListener() section
-        const button = document.querySelector("button")
+        const button = document.querySelectorAll("button")[1];
         button.addEventListener("click", function(){
             console.log("From addEventListener");
         })
-
         // Checkpoint 3.1 What is the difference between inline event handlers and addEventListener? When should you use one over the other?
         // Answer: 
 
         const results = []
         // Todo 3.3b When the user presses the submit form button, append the contents of the form to results. Then, display the content of results
         // Relevant Link: https://stackoverflow.com/questions/11563638/how-do-i-get-the-value-of-text-input-field-using-javascript
-        const form = document.querySelector("form"); // Add this line to select the form element
+        const form = document.querySelector("form");
         form.addEventListener("submit", function(event){
             event.preventDefault();
             const firstName = document.getElementById("firstName").value;
@@ -89,9 +89,22 @@
         const grandparent = document.querySelector(".grandparent")
         const parent = document.querySelector(".parent")
         const child = document.querySelector(".child")
+        grandparent.addEventListener("click", function(){
+            console.log("Grandparent");
+        })
+
+        parent.addEventListener("click", function(){
+            console.log("Parent");
+        })
+
+        child.addEventListener("click", function(){
+            console.log("Child");
+        })
+        
 
         // Checkpoint 3.2 What is event bubbling? How was it shown in Todo 3.5?
-        // Answer: 
+        // Answer: event bubbling is when a chain of events is triggered. in our example the child event can trigger the parent event causing
+        // another event that then triggers the grandparent event.
         
         // Bonus Todo 3.6 Change your code in the previous todo such that "grandparent" is displayed first
 
